@@ -7,11 +7,28 @@ import AddCommentDialog from '../components/AddCommentDialog/AddCommentDialog.js
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CommentsActions from '../actions';
+import * as commentApi from '../api/comments';
+import store from '../Store.js';
+import * as firebase from "firebase";
+const config = {
+    apiKey: "AIzaSyDp4Q5j7yKxaCxHhL6oyRRiLJuJMKPV7FI",
+    authDomain: "annonymous-comments.firebaseapp.com",
+    databaseURL: "https://annonymous-comments.firebaseio.com",
+    storageBucket: "annonymous-comments.appspot.com",
+    messagingSenderId: "1040440423116"
+};
+firebase.initializeApp(config);
+
+commentApi.readComments().then(comments => {
+    store.dispatch(CommentsActions.loadComments(comments));
+});
+
+//commentApi.writeComment('dima', 'мое сообщение', null, new Date().getTime());
 
 const App = ({ comments, global, actions }) => (
     <MuiThemeProvider>
         <div className="app">
-            <CommentToolbar showCommentDialog={actions.showCommentDialog}/>
+            <CommentToolbar showCommentDialog={actions.showCommentDialog} />
             <CommentsList items={comments} showCommentDialog={actions.showCommentDialog} />
             <AddCommentDialog
                 open={global.commentFormOpen}

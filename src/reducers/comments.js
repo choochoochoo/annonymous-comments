@@ -1,4 +1,4 @@
-import { ADD_COMMENT } from '../constants/ActionTypes.js';
+import { ADD_COMMENT, LOAD_COMMENTS } from '../constants/ActionTypes.js';
 import { getNodeFromArrayById } from '../helpers/helper.js';
 
 const initialState = [
@@ -39,6 +39,10 @@ const initialState = [
 
 export default function comments(state = initialState, action) {
     switch (action.type) {
+        case LOAD_COMMENTS:
+            console.log(action.comments)
+            return action.comments;
+
         case ADD_COMMENT: {
             if (action.parentId) {
                 const newState = [...state];
