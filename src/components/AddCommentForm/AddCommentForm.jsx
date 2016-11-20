@@ -19,26 +19,28 @@ export default class extends Component {
         const userName = this.state.userName;
         const message = this.state.message;
 
-        if(!userName){
+        if (!userName) {
             alert('Введите имя пользователя');
             return;
         }
-        
-        if(!message){
+
+        if (!message) {
             alert('Введите сообщение');
             return;
         }
 
         this.props.addComment(
-            null,
+            this.props.targetCommentId,
             userName,
             message
         );
+
+        this.props.hideCommentDialog();
     }
 
-    handleClose = (event, index, value) => {
-
-    }
+    handleClose = () => {
+        this.props.hideCommentDialog();
+    };
 
     // не выношу в общее состояние, т.к думаю что оно там не нужно
     handleChangeUserName = e => {
@@ -69,22 +71,16 @@ export default class extends Component {
                     onChange={this.handleChangeMessage}
                     value={this.state.message}
                     /><br />
-                <Toolbar>
-                    <ToolbarGroup>
-                    </ToolbarGroup>
-                    <ToolbarGroup>
-                        <FlatButton
-                            label="Отправить"
-                            primary={true}
-                            primary={true}
-                            onTouchTap={this.handleSave}
-                            />
-                        <FlatButton
-                            label="Закрыть"
-                            onTouchTap={this.handleClose}
-                            />
-                    </ToolbarGroup>
-                </Toolbar>
+                <FlatButton
+                    label="Отправить"
+                    primary={true}
+                    primary={true}
+                    onTouchTap={this.handleSave}
+                    />
+                <FlatButton
+                    label="Закрыть"
+                    onTouchTap={this.handleClose}
+                    />
             </form>
         );
     }

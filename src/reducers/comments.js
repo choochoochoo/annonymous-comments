@@ -48,8 +48,8 @@ export default function comments(state = initialState, action) {
                     date: new Date().toString(),
                     childComments: []
                 }
-            ]
+            ];
         default:
-            return state
+            return state;
     }
 }

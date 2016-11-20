@@ -15,6 +15,10 @@ export default class Comment extends React.Component {
 
     isRoot = !this.parentId;
 
+    handleOpenCommentForm = (event, parentComment) => {
+        this.props.showCommentDialog(this.props.id);
+    }
+
     render() {
         const classIsRoot = !this.parentId ? 'comment_root' : '';
 
@@ -32,12 +36,20 @@ export default class Comment extends React.Component {
                     {this.message}
                 </div>
                 <div className="comment__manage">
-                    <RaisedButton label="Ответить" primary={true} />
+                    <RaisedButton
+                        label="Ответить"
+                        primary={true}
+                        onTouchTap={this.handleOpenCommentForm}
+                        />
                 </div>
                 <div className="comment__childs">
                     {
-                        this.childComments.map(comment => {
-                            return <Comment key={comment.id} { ...comment } />;
+                        this.props.childComments.map(comment => {
+                            return <Comment
+                                key={comment.id}
+                                showCommentDialog={this.props.showCommentDialog}
+                                { ...comment }
+                                />;
                         })
                     }
                 </div>

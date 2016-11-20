@@ -8,7 +8,11 @@ export default class CommentList extends React.Component {
             <div className="comments-list">
                 {
                     this.props.items.map(comment => {
-                        return <Comment key={comment.id} { ...comment } />;
+                        return <Comment
+                            key={comment.id}
+                            showCommentDialog={this.props.showCommentDialog}
+                            { ...comment }
+                            />;
                     })
                 }
             </div>
