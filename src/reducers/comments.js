@@ -45,8 +45,8 @@ export default function comments(state = initialState, action) {
                     id: state.reduce((maxId, comment) => Math.max(comment.id, maxId), -1) + 1,
                     message: action.message,
                     userName: action.userName,
-                    date: action.date,
-                    childComments: action.childComments
+                    date: new Date().toString(),
+                    childComments: []
                 }
             ]
         default:
