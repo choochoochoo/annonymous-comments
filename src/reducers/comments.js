@@ -40,12 +40,14 @@ export default function comments(state = initialState, action) {
     switch (action.type) {
         case ADD_COMMENT:
             return [
+                ...state,
                 {
                     id: state.reduce((maxId, comment) => Math.max(comment.id, maxId), -1) + 1,
-                    text: action.message,
-                    userName: action.userName
-                },
-                ...state
+                    message: action.message,
+                    userName: action.userName,
+                    date: action.date,
+                    childComments: action.childComments
+                }
             ]
         default:
             return state
