@@ -1,5 +1,5 @@
 import React from 'react';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import './Comment.sass';
 
 export default class Comment extends React.Component {
@@ -32,7 +32,7 @@ export default class Comment extends React.Component {
                     {this.message}
                 </div>
                 <div className="comment__manage">
-                    <FlatButton label="Ответить" primary={true} />
+                    <RaisedButton label="Ответить" primary={true} />
                 </div>
                 <div className="comment__childs">
                     {

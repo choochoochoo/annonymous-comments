@@ -29,7 +29,11 @@ export default class CommentToolbar extends Component {
                     <ToolbarTitle text="Обсуждение" />
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <RaisedButton label="Написать комментарий" primary={true} onTouchTap={this.handleTouch} />
+                    <RaisedButton 
+                        label="Написать комментарий" 
+                        primary={true} 
+                        onTouchTap={this.handleTouch}
+                        />
                 </ToolbarGroup>
             </Toolbar>
         );
