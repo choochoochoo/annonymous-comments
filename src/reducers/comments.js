@@ -1,4 +1,5 @@
 import { ADD_COMMENT } from '../constants/ActionTypes.js';
+import { getNodeFromArrayById } from '../helpers/helper.js';
 
 const initialState = [
     {
@@ -38,7 +39,21 @@ const initialState = [
 
 export default function comments(state = initialState, action) {
     switch (action.type) {
-        case ADD_COMMENT:
+        case ADD_COMMENT: {
+            if (action.parentId) {
+                const newState = [...state];
+
+                getNodeFromArrayById(newState, action.parentId).childComments.push({
+                    id: 99,
+                    message: action.message,
+                    userName: action.userName,
+                    date: new Date().toString(),
+                    childComments: []
+                });
+
+                return newState;
+            }
+
             return [
                 ...state,
                 {
@@ -49,6 +64,8 @@ export default function comments(state = initialState, action) {
                     childComments: []
                 }
             ];
+        }
+
         default:
             return state;
     }
