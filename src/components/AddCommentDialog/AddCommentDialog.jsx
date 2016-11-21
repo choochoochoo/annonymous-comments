@@ -16,6 +16,7 @@ export default class extends React.Component {
                     >
                     <AddCommentForm
                         addComment={this.props.addComment}
+                        addCommentToDb={this.props.addCommentToDb}
                         hideCommentDialog={this.props.hideCommentDialog}
                         targetCommentId={this.props.targetCommentId}
                         />

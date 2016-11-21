@@ -1,14 +1,22 @@
 import * as firebase from "firebase";
 import { getTreeFromFlatStructure } from '../helpers/helper.js';
 
-export function writeComment(userName, message, parentId, date) {
-    var comment = firebase.database().ref('comments').push();
-    comment.set({
-        userName,
-        message,
-        parentId,
-        date,
-        childComments: []
+export function writeComment(userName, message, date, parentId) {
+    // метод set в промисе не возвращает использованный ключ, 
+    // пришлось завернуть в промис
+    const newKey = firebase.database().ref().child('comments').push().key;
+    return new Promise((resolve, reject) => {
+        firebase.database().ref(`comments/${newKey}`).set({
+            userName,
+            message,
+            parentId,
+            date,
+            childComments: []
+        }).then(() => {
+            resolve(newKey);
+        }).catch(exception => {
+            reject(exception);
+        });
     });
 }
 
@@ -24,9 +32,9 @@ export function readComments() {
                         ...loadedComments[key],
                         childComments: []
                     });
-                }
+}
             }
 
-            return getTreeFromFlatStructure(listComments);
+return getTreeFromFlatStructure(listComments);
         });
 }

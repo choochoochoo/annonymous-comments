@@ -10,6 +10,7 @@ import * as CommentsActions from '../actions';
 import * as commentApi from '../api/comments';
 import store from '../Store.js';
 import * as firebase from "firebase";
+
 const config = {
     apiKey: "AIzaSyDp4Q5j7yKxaCxHhL6oyRRiLJuJMKPV7FI",
     authDomain: "annonymous-comments.firebaseapp.com",
@@ -21,9 +22,9 @@ firebase.initializeApp(config);
 
 commentApi.readComments().then(comments => {
     store.dispatch(CommentsActions.loadComments(comments));
+}).catch(exception => {
+    console.log(exception);
 });
-
-//commentApi.writeComment('dima 1', 'мое сообщение 1', null, new Date().getTime());
 
 const App = ({ comments, global, actions }) => (
     <MuiThemeProvider>
@@ -34,6 +35,7 @@ const App = ({ comments, global, actions }) => (
                 open={global.commentFormOpen}
                 hideCommentDialog={actions.hideCommentDialog}
                 addComment={actions.addComment}
+                addCommentToDb={commentApi.writeComment}
                 targetCommentId={global.targetCommentId}
                 />
         </div>

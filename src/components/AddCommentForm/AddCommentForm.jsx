@@ -29,13 +29,26 @@ export default class extends Component {
             return;
         }
 
-        this.props.addComment(
-            this.props.targetCommentId,
-            userName,
-            message
-        );
+        const date = new Date().getTime();
 
-        this.props.hideCommentDialog();
+        this.props.addCommentToDb(
+            userName,
+            message,
+            date,
+            this.props.targetCommentId
+        ).then((newKey) => {
+            this.props.addComment(
+                newKey,
+                userName,
+                message,
+                date,
+                this.props.targetCommentId
+            );
+
+            this.props.hideCommentDialog();
+        }).catch(exception => {
+            console.log(exception)
+        });
     }
 
     handleClose = () => {
