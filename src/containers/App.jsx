@@ -23,7 +23,7 @@ commentApi.readComments().then(comments => {
     store.dispatch(CommentsActions.loadComments(comments));
 });
 
-//commentApi.writeComment('dima', 'мое сообщение', null, new Date().getTime());
+//commentApi.writeComment('dima 1', 'мое сообщение 1', null, new Date().getTime());
 
 const App = ({ comments, global, actions }) => (
     <MuiThemeProvider>

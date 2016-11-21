@@ -1,4 +1,5 @@
 const walk = require('tree-walk');
+const listToTree = require('list-to-tree-lite');
 
 export function getNodeFromArrayById(array, id) {
     const domWalker = walk(el => {
@@ -16,4 +17,14 @@ export function getNodeFromArrayById(array, id) {
     });
 
     return parentComment;
+}
+
+export function getTreeFromFlatStructure(list) {
+    const options = {
+        idKey: 'id',
+        parentKey: 'parentId',
+        childrenKey: 'childComments'
+    };
+
+    return listToTree(list, options);
 }
