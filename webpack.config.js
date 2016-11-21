@@ -2,6 +2,29 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
+const plugins = [
+    new CopyWebpackPlugin([
+        { from: "src/templates/index.html", to: "index.html" }
+    ]),
+    new webpack.ProvidePlugin({
+        Promise: "imports?this=>global!exports?global.Promise!es6-promise",
+        fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
+    })
+];
+
+if (process.env.NODE_ENV === 'production') {
+    plugins.concat([
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                screw_ie8: true
+            }
+        })
+    ]);
+}
+
+
 module.exports = {
     entry: [
         "babel-polyfill",
@@ -34,13 +57,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new CopyWebpackPlugin([
-            { from: "src/templates/index.html", to: "index.html" }
-        ]),
-        new webpack.ProvidePlugin({
-            Promise: "imports?this=>global!exports?global.Promise!es6-promise",
-            fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
-        })
-    ]
+    plugins: plugins
 };
