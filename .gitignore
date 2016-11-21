@@ -4,4 +4,4 @@ npm-debug.log*
 .idea
 .editorconfig
 .vscode
-public
+public/www/js
