@@ -27,6 +27,7 @@ commentApi.readComments().then(comments => {
     store.dispatch(Actions.loadComments(comments));
     store.dispatch(Actions.hideProgress());
 }).catch(exception => {
+    alert('Произошла ошибка на сервере');
     console.log(exception);
     store.dispatch(Actions.hideProgress());
 });

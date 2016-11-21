@@ -15,9 +15,6 @@ export default class extends Component {
     };
 
     handleSave = (event, index, value) => {
-
-
-
         const userName = this.state.userName;
         const message = this.state.message;
 
@@ -52,6 +49,7 @@ export default class extends Component {
             this.props.hideCommentDialog();
             this.props.hideProgress();
         }).catch(exception => {
+            alert('Произошла ошибка на сервере');
             console.log(exception);
             this.props.hideProgress();
         });
