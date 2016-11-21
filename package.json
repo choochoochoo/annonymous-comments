@@ -44,6 +44,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "dependencies": {
+    "date-format": "0.0.2",
     "firebase": "^3.6.1",
     "list-to-tree-lite": "^0.1.0",
     "material-ui": "^0.16.4",

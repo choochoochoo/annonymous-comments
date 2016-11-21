@@ -1,7 +1,6 @@
-const walk = require('tree-walk');
-const listToTree = require('list-to-tree-lite');
-
 export function getNodeFromArrayById(array, id) {
+    const walk = require('tree-walk');
+
     const domWalker = walk(el => {
         return el.childComments;
     });
@@ -20,6 +19,8 @@ export function getNodeFromArrayById(array, id) {
 }
 
 export function getTreeFromFlatStructure(list) {
+    const listToTree = require('list-to-tree-lite');
+
     const options = {
         idKey: 'id',
         parentKey: 'parentId',
@@ -27,4 +28,9 @@ export function getTreeFromFlatStructure(list) {
     };
 
     return listToTree(list, options);
+}
+
+export function getFormatDate(timestamp) {
+    const formatDate = require('date-format');
+    return formatDate.asString('dd.mm.yyyy hh:mm', new Date(timestamp));
 }

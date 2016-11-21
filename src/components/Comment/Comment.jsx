@@ -1,6 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import './Comment.sass';
+import { getFormatDate } from '../../helpers/helper.js';
 
 export default class Comment extends React.Component {
     userName = this.props.userName;
@@ -17,7 +18,7 @@ export default class Comment extends React.Component {
 
     handleOpenCommentForm = (event, parentComment) => {
         this.props.showCommentDialog(this.props.id);
-    }
+    };
 
     render() {
         const classIsRoot = !this.parentId ? 'comment_root' : '';
@@ -29,7 +30,7 @@ export default class Comment extends React.Component {
                         {this.userName}
                     </span>
                     <span className="comment__title-date">
-                        {this.date}
+                        {getFormatDate(this.date)}
                     </span>
                 </div>
                 <div className="comment__message">
