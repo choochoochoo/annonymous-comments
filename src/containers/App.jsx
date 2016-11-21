@@ -4,9 +4,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CommentToolbar from '../components/CommentToolbar/CommentToolbar.jsx';
 import CommentsList from '../components/CommentsList/CommentsList.jsx';
 import AddCommentDialog from '../components/AddCommentDialog/AddCommentDialog.jsx';
+import Progress from '../components/Progress/Progress.jsx';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CommentsActions from '../actions';
+import * as Actions from '../actions';
 import * as commentApi from '../api/comments';
 import store from '../Store.js';
 import * as firebase from "firebase";
@@ -20,10 +21,14 @@ const config = {
 };
 firebase.initializeApp(config);
 
+store.dispatch(Actions.showProgress());
+
 commentApi.readComments().then(comments => {
-    store.dispatch(CommentsActions.loadComments(comments));
+    store.dispatch(Actions.loadComments(comments));
+    store.dispatch(Actions.hideProgress());
 }).catch(exception => {
     console.log(exception);
+    store.dispatch(Actions.hideProgress());
 });
 
 const App = ({ comments, global, actions }) => (
@@ -37,7 +42,10 @@ const App = ({ comments, global, actions }) => (
                 addComment={actions.addComment}
                 addCommentToDb={commentApi.writeComment}
                 targetCommentId={global.targetCommentId}
+                showProgress={actions.showProgress}
+                hideProgress={actions.hideProgress}
                 />
+            <Progress open={global.progressFormOpen} />
         </div>
     </MuiThemeProvider>
 );
@@ -48,7 +56,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(CommentsActions, dispatch)
+    actions: bindActionCreators(Actions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

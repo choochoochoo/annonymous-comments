@@ -9,3 +9,7 @@ export const showCommentDialog = (targetCommentId = null) =>
     ({ type: types.SHOW_COMMENT_DIALOG, targetCommentId });
 
 export const hideCommentDialog = () => ({ type: types.HIDE_COMMENT_DIALOG });
+
+export const showProgress = () => ({ type: types.SHOW_PROGRESS });
+
+export const hideProgress = () => ({ type: types.HIDE_PROGRESS });

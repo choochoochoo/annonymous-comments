@@ -16,6 +16,8 @@ export default class extends Component {
 
     handleSave = (event, index, value) => {
 
+
+
         const userName = this.state.userName;
         const message = this.state.message;
 
@@ -30,6 +32,8 @@ export default class extends Component {
         }
 
         const date = new Date().getTime();
+
+        this.props.showProgress();
 
         this.props.addCommentToDb(
             userName,
@@ -46,8 +50,10 @@ export default class extends Component {
             );
 
             this.props.hideCommentDialog();
+            this.props.hideProgress();
         }).catch(exception => {
-            console.log(exception)
+            console.log(exception);
+            this.props.hideProgress();
         });
     }
 
