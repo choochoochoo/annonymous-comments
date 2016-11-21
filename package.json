@@ -1,7 +1,7 @@
 {
-  "name": "contest-clients",
+  "name": "annonymous-comments",
   "version": "1.0.0",
-  "description": "Contests for clients.",
+  "description": "annonymous-comments",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
