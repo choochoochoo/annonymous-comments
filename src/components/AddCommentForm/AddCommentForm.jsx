@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
 export default class extends Component {
 
@@ -37,7 +36,7 @@ export default class extends Component {
             message,
             date,
             this.props.targetCommentId
-        ).then((newKey) => {
+        ).then(newKey => {
             this.props.addComment(
                 newKey,
                 userName,

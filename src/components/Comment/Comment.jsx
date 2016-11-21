@@ -21,7 +21,7 @@ export default class Comment extends React.Component {
     };
 
     render() {
-        const classIsRoot = !this.parentId ? 'comment_root' : '';
+        const classIsRoot = this.parentId ? '' : 'comment_root';
 
         return (
             <div className={`comment ${classIsRoot}`}>

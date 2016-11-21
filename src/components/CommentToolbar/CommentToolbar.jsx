@@ -1,6 +1,6 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 
 export default class CommentToolbar extends Component {
     handleOpenCommentForm = (event, index, value) => {
