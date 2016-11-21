@@ -11,6 +11,7 @@ import * as Actions from '../actions';
 import * as commentApi from '../api/comments';
 import store from '../Store.js';
 import * as firebase from "firebase";
+import './App.sass';
 
 const config = {
     apiKey: "AIzaSyDp4Q5j7yKxaCxHhL6oyRRiLJuJMKPV7FI",

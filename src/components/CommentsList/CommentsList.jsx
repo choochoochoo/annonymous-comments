@@ -1,8 +1,8 @@
 import React from 'react';
-import './CommentsList.sass';
 import Comment from '../Comment/Comment.jsx';
+import './CommentsList.sass';
 
-export default class CommentList extends React.Component {
+export default class CommentsList extends React.Component {
     render() {
         return (
             <div className="comments-list">

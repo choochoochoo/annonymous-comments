@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import './AddCommentForm.sass';
 
 export default class extends Component {
 
@@ -87,16 +88,18 @@ export default class extends Component {
                     onChange={this.handleChangeMessage}
                     value={this.state.message}
                     /><br />
-                <FlatButton
-                    label="Отправить"
-                    primary={true}
-                    primary={true}
-                    onTouchTap={this.handleSave}
-                    />
-                <FlatButton
-                    label="Закрыть"
-                    onTouchTap={this.handleClose}
-                    />
+                <div className="add-comment-form__manage">
+                    <FlatButton
+                        label="Отправить"
+                        primary={true}
+                        primary={true}
+                        onTouchTap={this.handleSave}
+                        />
+                    <FlatButton
+                        label="Закрыть"
+                        onTouchTap={this.handleClose}
+                        />
+                </div>
             </form>
         );
     }
